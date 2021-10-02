@@ -5,8 +5,9 @@
 # allowing parsed data to be converted back into complex types, 
 # after first validating the incoming data.
 
-from rest_framework import serializers
-from crudrestapi.models import Patientcredentials
+from rest_framework import fields, serializers
+from connectedbyteshealth.crudrestapi.models import Patienthealthdata
+from crudrestapi.models import Patientcredentials,Patienthealthdata,Patientsvitals,Patientbloodsugartracking
 
 #The ModelSerializer class provides a shortcut 
 # that lets you automatically create a Serializer class 
@@ -28,6 +29,24 @@ class PatientcredentialsSerializer(serializers.ModelSerializer):
 #making the id field optional because when you want to insert new user 
 # you might not want to put value for id field in your request object.
         extra_kwargs={'id':{'required':False}}
+
+class PatienthealthdataSerializer(serializers.ModelSerializer):
+        
+        class Meta:
+                model=Patienthealthdata
+                fields=[]
+                
+class PatientsvitalsSerializer(serializers.ModelSerializer):
+        
+        class Meta:
+                model=Patientsvitals
+                fields=[]
+
+class PatientbloodsugartrackingSerializer(serializers.ModelSerializer):
+        
+        class Meta:
+                model=Patientbloodsugartracking
+                fields=[]
         
 
 

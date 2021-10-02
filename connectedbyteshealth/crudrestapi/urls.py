@@ -11,6 +11,9 @@ from crudrestapi import views
 
 router=routers.DefaultRouter()
 router.register(r'patients',views.PatientcredentialsViewSet)
+router.register(r'patientshealthdata',views.PatienthealthdataViewSet)
+router.register(r'patientvitals',views.PatientvitalsViewSet)
+router.register(r'patientBloodSugarreading',views.PatientbloodsugartrackingViewSet)
 
 urlpatterns=[
     path('',include(router.urls)),

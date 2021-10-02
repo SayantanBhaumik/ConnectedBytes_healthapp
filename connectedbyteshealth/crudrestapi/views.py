@@ -1,13 +1,14 @@
 #Here going to use ViewSets which will allow  to write multiple views together
 
-from django.db.models.query import QuerySet
+#rom django.db.models.query import QuerySet
 from django.shortcuts import render
-from rest_framework import viewsets,status
+from rest_framework import viewsets
+from rest_framework import status
 from django.http import Http404
 from rest_framework.utils import serializer_helpers
-from crudrestapi.serializers import PatientcredentialsSerializer
-from crudrestapi.models import Patientcredentials
-from rest_framework import response
+from crudrestapi.serializers import PatientcredentialsSerializer,PatientbloodsugartrackingSerializer,PatienthealthdataSerializer,PatientsvitalsSerializer
+from crudrestapi.models import Patientcredentials,Patientbloodsugartracking,Patienthealthdata,Patientsvitals
+from rest_framework.response import Response
 
 
 class PatientcredentialsViewSet(viewsets.ViewSet):
@@ -22,7 +23,7 @@ class PatientcredentialsViewSet(viewsets.ViewSet):
 # have also defined destroy() function to delete the existing record.
     
     def create(self,request,*args,**kwargs):
-        kwarg_field:str=self.lookup_url_kwarg or self.lookup_field
+        kwarg_field: str=self.lookup_url_kwarg or self.lookup_field
         self.kwargs[kwarg_field] = request.data[self.update_data_pk_field]
         
         try:
@@ -36,5 +37,13 @@ class PatientcredentialsViewSet(viewsets.ViewSet):
             instance.delete()
         except Http404:
             pass
-        return response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+    
+class PatienthealthdataViewSet(viewsets.ViewSet):
+    
+    
+class PatientsvitalsViewSet(viewsets.ViewSet):
+    
+
+class PatientbloodsugartrackingViewSet(viewsets.ViewSet):
         
