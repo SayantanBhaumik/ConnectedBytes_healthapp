@@ -12,27 +12,27 @@ class Patientcredentials(models.Model):
     # for the new user record inserted into table
     
     id = models.AutoField(primary_key=True,default=0)
-    patient_first_name=models.CharField(max_length=30,blank=False,default='')
-    patient_last_name=models.CharField(max_length=30,blank=False,default='')
-    patient_email=models.EmailField(max_length=100,blank=False,default='')
-    patient_phonenumber=models.CharField(max_length=15,blank=False)
-    patient_accountcreationtime=models.DateTimeField(default=datetime.datetime.now)
-    patient_username=models.CharField(max_length=20,blank=False)
+    first_name=models.CharField(max_length=30,blank=False,default='')
+    last_name=models.CharField(max_length=30,blank=False,default='')
+    email=models.EmailField(max_length=100,blank=False,default='')
+    phonenumber=models.CharField(max_length=15,blank=False)
+    accountcreationtimestamp=models.DateTimeField(default=datetime.datetime.now)
+    username=models.CharField(max_length=20,blank=False)
     MALE='M'
     FEMALE='F'
     OTHERS='O'
-    Patient_Sex_Choices=[(MALE,'Male'),(FEMALE,'Female'),(OTHERS,'Others')]
-    patient_sex=models.CharField(max_length=2,choices=Patient_Sex_Choices,default='Male')
-    patient_dob=models.DateField(auto_now=False, auto_now_add=False,default=datetime.date.today)
-    patient_height=models.FloatField(null=False, blank=False, default=None)
-    patient_weight=models.FloatField(null=False, blank=False, default=None)
-    patient_bloodgroup=models.CharField(max_length=10,default='A+')
-    patient_maritalstatus=models.CharField(max_length=10,default='Married')
-    patient_emergencycontact=models.CharField(max_length=15,default='')
-    patient_city=models.CharField(max_length=15,default='Kolkata')
-    patient_state=models.CharField(max_length=15,default='WestBengal')
-    patient_pincode=models.CharField(max_length=15,default='700000')
-    patient_country=models.CharField(max_length=15,default='India')
+    gender=[(MALE,'Male'),(FEMALE,'Female'),(OTHERS,'Others')]
+    sex=models.CharField(max_length=2,choices=gender,default='Male')
+    dob=models.DateField(auto_now=False, auto_now_add=False,default=datetime.date.today)
+    height=models.FloatField(null=False, blank=False, default=None)
+    weight=models.FloatField(null=False, blank=False, default=None)
+    bloodgroup=models.CharField(max_length=10,default='A+')
+    maritalstatus=models.CharField(max_length=10,default='Married')
+    emergencycontact=models.CharField(max_length=15,default='')
+    city=models.CharField(max_length=15,default='Kolkata')
+    state=models.CharField(max_length=15,default='WestBengal')
+    pincode=models.CharField(max_length=15,default='700000')
+    country=models.CharField(max_length=15,default='India')
     
     #specified the table name under class Meta.
     class Meta:
@@ -43,20 +43,20 @@ class Patientcredentials(models.Model):
         return self
     
     
-class Patienthealthdata(models.Model):
+class Secondarydata(models.Model):
     id = models.AutoField(primary_key=True,default=0)
-    patient_profession=models.CharField(max_length=30,blank=False,default='')
-    patient_smoking=models.CharField(max_length=30,blank=False,default='')
-    patient_drinking=models.CharField(max_length=30,blank=False,default='')
-    patient_regularphysicalactivity=models.CharField(max_length=30,blank=False,default='')
-    patient_diet=models.CharField(max_length=30,blank=False,default='')
-    patient_allergy=models.CharField(max_length=30,blank=False,default='')
-    patient_chronicillness=models.CharField(max_length=30,blank=False,default='')
-    patient_majorinjury=models.CharField(max_length=30,blank=False,default='')
-    patient_majorsurgery=models.CharField(max_length=30,blank=False,default='')
-    patient_regularphysicalactivity=models.CharField(max_length=30,blank=False,default='')
-    patient_eyepower=models.CharField(max_length=30,blank=False,default='')
-    patient_temperature=models.FloatField(null=False, blank=False, default=None)
+    profession=models.CharField(max_length=30,blank=False,default='')
+    smoking=models.CharField(max_length=30,blank=False,default='')
+    drinking=models.CharField(max_length=30,blank=False,default='')
+    regularphysicalactivity=models.CharField(max_length=30,blank=False,default='')
+    diet=models.CharField(max_length=30,blank=False,default='')
+    allergy=models.CharField(max_length=30,blank=False,default='')
+    chronicillness=models.CharField(max_length=30,blank=False,default='')
+    majorinjury=models.CharField(max_length=30,blank=False,default='')
+    majorsurgery=models.CharField(max_length=30,blank=False,default='')
+    regularphysicalactivity=models.CharField(max_length=30,blank=False,default='')
+    eyepower=models.CharField(max_length=30,blank=False,default='')
+    temperature=models.FloatField(null=False, blank=False, default=None)
         
         
     class Meta:
@@ -66,11 +66,11 @@ class Patienthealthdata(models.Model):
         return self
     
 class Patientsvitals(models.Model):
-    patient_vitalsdatetime=models.DateTimeField(default=datetime.datetime.now)
-    patient_systolic=models.IntegerField(null=False,blank=False,default=0)
-    patient_diastolic=models.IntegerField(null=False,blank=False,default=0)
-    patient_temperature=models.FloatField(null=False, blank=False, default=None)
-    patient_pulse=models.IntegerField(null=False,blank=False,default=0)
+    vitalsdatetime=models.DateTimeField(default=datetime.datetime.now)
+    systolic=models.IntegerField(null=False,blank=False,default=0)
+    diastolic=models.IntegerField(null=False,blank=False,default=0)
+    temperature=models.FloatField(null=False, blank=False, default=None)
+    pulse=models.IntegerField(null=False,blank=False,default=0)
         
     class Meta:
         db_table='patientvitals'
@@ -79,8 +79,8 @@ class Patientsvitals(models.Model):
         return self
 
 class Patientbloodsugartracking(models.Model):
-    patient_bloodsugarreadingdatetime=models.DateTimeField(default=datetime.datetime.now)
-    patient_bloodsugarreading=models.IntegerField(null=False,blank=False,default=0)
+    bloodsugarreadingdatetime=models.DateTimeField(default=datetime.datetime.now)
+    bloodsugarreading=models.IntegerField(null=False,blank=False,default=0)
    
     class Meta:
        db_table='patientBloodSugarreading'
